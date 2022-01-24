@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "596340941854",
+    "project_id": "reverse-70b6c",
+    "storage_bucket": "reverse-70b6c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:596340941854:android:207a9952555b0e049c3a0f",
+        "android_client_info": {
+          "package_name": "com.example.dalal"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "596340941854-klnbp65u7u4en7varev6su1c9l5ksqbv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.dalal",
+            "certificate_hash": "9a242197bb68e4806c52d2182b17e93709f887cc"
+          }
+        },
+        {
+          "client_id": "596340941854-f6s1g93sf012285pgi1uqb7rshb2eul3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDRYc-kiqWr6XgaUnoNBho3kxQEtx1Ehzo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "596340941854-f6s1g93sf012285pgi1uqb7rshb2eul3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
