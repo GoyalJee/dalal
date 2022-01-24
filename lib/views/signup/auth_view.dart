@@ -58,19 +58,20 @@ class AuthView extends StatelessWidget {
                 child: Hero(
                   tag: "go",
                   child: CustomButton(
-                      onTap: () {
-                        if (_formKey.currentState!.validate()) {
-                          if (_controller.phoneNumber.length == 10) {
-                            _controller.showLoading.value = true;
-                            _controller.verifyNumber();
-                          } else {
-                            Get.snackbar(
-                                "Error", "Please Enter 10 digit Mobile Number.",
-                                backgroundColor: Colors.red.withOpacity(0.7));
-                          }
+                    btnText: "GO",
+                    onTap: () {
+                      if (_formKey.currentState!.validate()) {
+                        if (_controller.phoneNumber.length == 10) {
+                          _controller.showLoading.value = true;
+                          _controller.verifyNumber();
+                        } else {
+                          Get.snackbar(
+                              "Error", "Please Enter 10 digit Mobile Number.",
+                              backgroundColor: Colors.red.withOpacity(0.7));
                         }
-                      },
-                      btnText: "GO"),
+                      }
+                    },
+                  ),
                 ),
               ),
               Obx(() {
