@@ -1,6 +1,7 @@
 import 'package:dalal/controllers/signup/auth_controller.dart';
 import 'package:dalal/custom_widgets/custom_button.dart';
 import 'package:dalal/custom_widgets/custom_input.dart';
+import 'package:dalal/custom_widgets/custom_progress.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -22,7 +23,7 @@ class OTPAuthView extends StatelessWidget {
                 children: [
                   CustomInput(
                     hint: "OTP",
-                    keyboardType: TextInputType.text,
+                    keyboardType: TextInputType.number,
                     maxLength: 6,
                     maxLines: 1,
                     emptyError: "Please Enter OTP.",
@@ -45,12 +46,18 @@ class OTPAuthView extends StatelessWidget {
                     btnText: "GO",
                     onTap: (){
                       if (_formKey.currentState!.validate()) {
-                        _controller.signInWithPhoneNumber();
+                        _controller.showLoading.value = true;
+                        _controller.myCredentials(verID: _controller.veri_result);
                       }
                     },
                   ),
                 ),
-              )
+              ),
+              Obx(() {
+                return _controller.showLoading.value
+                    ? const CustomProgress()
+                    : const SizedBox.shrink();
+              },)
             ],
           ),
         ),

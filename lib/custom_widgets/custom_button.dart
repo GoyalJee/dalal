@@ -5,8 +5,13 @@ import 'package:get/get.dart';
 class CustomButton extends StatelessWidget {
   final VoidCallback onTap;
   final String btnText;
+  final Color? bgColor;
 
-  const CustomButton({Key? key, required this.onTap, required this.btnText})
+  const CustomButton(
+      {Key? key,
+      required this.onTap,
+      required this.btnText,
+      this.bgColor = MyColors.primary})
       : super(key: key);
 
   @override
@@ -18,9 +23,10 @@ class CustomButton extends StatelessWidget {
         onPressed: onTap,
         style: ElevatedButton.styleFrom(
             fixedSize: Size(Get.size.width, 48),
-            primary: MyColors.primary,
+            primary: bgColor,
             shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.all(Radius.circular(Get.size.width/2)))),
+                borderRadius:
+                    BorderRadius.all(Radius.circular(Get.size.width / 2)))),
       ),
     );
   }

@@ -2,6 +2,7 @@ import 'package:dalal/controllers/signup/auth_controller.dart';
 import 'package:dalal/custom_widgets/custom_button.dart';
 import 'package:dalal/custom_widgets/custom_input.dart';
 import 'package:dalal/custom_widgets/custom_progress.dart';
+import 'package:dalal/views/signup/otp_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -59,11 +60,11 @@ class AuthView extends StatelessWidget {
                   tag: "go",
                   child: CustomButton(
                     btnText: "GO",
-                    onTap: () {
+                    onTap: () async {
                       if (_formKey.currentState!.validate()) {
                         if (_controller.phoneNumber.length == 10) {
                           _controller.showLoading.value = true;
-                          _controller.verifyNumber();
+                          await _controller.signInWithPhoneNumber();
                         } else {
                           Get.snackbar(
                               "Error", "Please Enter 10 digit Mobile Number.",
@@ -74,11 +75,13 @@ class AuthView extends StatelessWidget {
                   ),
                 ),
               ),
-              Obx(() {
-                return _controller.showLoading.value
-                    ? const CustomProgress()
-                    : const SizedBox.shrink();
-              })
+              Obx(
+                () {
+                  return _controller.showLoading.value
+                      ? const CustomProgress()
+                      : const SizedBox.shrink();
+                },
+              )
             ],
           ),
         ),

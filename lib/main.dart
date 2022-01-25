@@ -1,5 +1,5 @@
 import 'package:dalal/constants/my_colors.dart';
-import 'package:dalal/views/home/home_view.dart';
+import 'package:dalal/views/home/user_home_view.dart';
 import 'package:dalal/views/signup/who_view.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: MyColors.light
       ),
       home: GetStorage().read('isOnBoardingScreenShowed') == 'true'
-          ? HomeView()
+          ? UserHomeView()
           : WhoView(),
     );
   }
