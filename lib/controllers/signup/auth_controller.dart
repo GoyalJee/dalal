@@ -29,13 +29,13 @@ class AuthController extends GetxController {
       GetStorage().write("type", type);
       GetStorage().write("isOnBoardingScreenShowed", "true");
       if (type == "user") {
-        Get.off(() => UserHomeView());
+        Get.offAll(() => UserHomeView());
         Get.snackbar("Hey 🖐🏽🖐🏽", "SignedIn Successfully !");
       } else {
         FirebaseFirestore.instance
             .collection('broker')
             .add({"name": name.value, "phone": phoneNumber}).whenComplete(() {
-          Get.off(() => const BrokerHomeView());
+          Get.offAll(() => const BrokerHomeView());
           Get.snackbar("Hey 🖐🏽🖐🏽", "SignedIn Successfully !");
         });
       }
@@ -64,7 +64,7 @@ class AuthController extends GetxController {
         );
       },
       codeSent: (String verificationID, int? responseToken) {
-        Get.off(() => OTPAuthView());
+        Get.offAll(() => OTPAuthView());
         showLoading.value = false;
         verificationId.value = verificationID;
       },

@@ -51,45 +51,48 @@ class UserHomeView extends StatelessWidget {
               backgroundColor: Colors.white);
         },
       ),
-      body: NestedScrollView(
-        floatHeaderSlivers: true,
-        headerSliverBuilder: (context, innerBoxScroll) => [
-          SliverAppBar(
-            floating: true,
-            snap: true,
-            pinned: true,
-            title: Image.asset(
-              "assets/splash.png",
-              height: AppBar().preferredSize.height,
-            ),
-            centerTitle: true,
-            forceElevated: innerBoxScroll,
-            backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-          )
-        ],
-        body: SafeArea(
-          child: Obx(() {
-            return ListView.builder(
-              physics: const BouncingScrollPhysics(),
-              itemCount: _controller.userList.length,
-              itemBuilder: (context, index) {
-                return Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: ListTile(
-                    tileColor: _controller.userList[index].bs == "Buy"
-                        ? Colors.green.withOpacity(0.7)
-                        : Colors.red.withOpacity(0.7),
-                    shape: const RoundedRectangleBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(22))),
-                    title: Text(_controller.userList[index].budget!),
-                    subtitle: Text(_controller.userList[index].what!),
-                    trailing: Chip(
-                        label: Text(_controller.userList[index].status!)),
-                  ),
-                );
-              },
-            );
-          }),
+      body: SafeArea(
+        child: NestedScrollView(
+          floatHeaderSlivers: true,
+          headerSliverBuilder: (context, innerBoxScroll) => [
+            SliverAppBar(
+              elevation: 0,
+              floating: true,
+              snap: true,
+              pinned: true,
+              title: Image.asset(
+                "assets/splash.png",
+                height: AppBar().preferredSize.height,
+              ),
+              centerTitle: true,
+              forceElevated: innerBoxScroll,
+              backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+            )
+          ],
+          body: SafeArea(
+            child: Obx(() {
+              return ListView.builder(
+                physics: const BouncingScrollPhysics(),
+                itemCount: _controller.userList.length,
+                itemBuilder: (context, index) {
+                  return Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: ListTile(
+                      tileColor: _controller.userList[index].bs == "Buy"
+                          ? Colors.green.withOpacity(0.7)
+                          : Colors.red.withOpacity(0.7),
+                      shape: const RoundedRectangleBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(22))),
+                      title: Text(_controller.userList[index].budget!),
+                      subtitle: Text(_controller.userList[index].what!),
+                      trailing: Chip(
+                          label: Text(_controller.userList[index].status!)),
+                    ),
+                  );
+                },
+              );
+            }),
+          ),
         ),
       ),
     );
