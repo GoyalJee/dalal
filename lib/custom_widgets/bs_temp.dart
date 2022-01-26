@@ -26,12 +26,14 @@ class BSTemp extends StatelessWidget {
                   children: [
                     Expanded(
                       child: Align(
-                          alignment: Alignment.centerRight,
-                          child: IconButton(
-                              onPressed: () {
-                                Get.off(() => UserHomeView());
-                              },
-                              icon: const Icon(Icons.close_rounded))),
+                        alignment: Alignment.centerRight,
+                        child: IconButton(
+                          onPressed: () {
+                            Get.offAll(() => UserHomeView());
+                          },
+                          icon: const Icon(Icons.close_rounded),
+                        ),
+                      ),
                     )
                   ],
                 ),

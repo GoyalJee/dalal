@@ -8,16 +8,23 @@ class UserModel {
   String? budget;
   String? status;
 
+  UserModel(
+      {required this.name,
+      required this.phoneNumber,
+      required this.bs,
+      required this.what,
+      required this.budget,
+      required this.status});
 
-  UserModel(this.name, this.phoneNumber, this.bs, this.what, this.budget,
-      this.status);
+  static UserModel fromSnapshot(DocumentSnapshot snapshot) {
+    UserModel userModel = UserModel(
+        name: snapshot['name'],
+        phoneNumber: snapshot['phone'],
+        bs: snapshot['bs'],
+        what: snapshot['what'],
+        budget: snapshot['budget'],
+        status: snapshot['status']);
 
-  UserModel.fromDocumentSnapshot({required DocumentSnapshot documentSnapshot}) {
-    name = documentSnapshot['name'];
-    phoneNumber = documentSnapshot['phoneNumber'];
-    bs = documentSnapshot['bs'];
-    what = documentSnapshot['what'];
-    budget = documentSnapshot['budget'];
-    status = documentSnapshot['status'];
+    return userModel;
   }
 }

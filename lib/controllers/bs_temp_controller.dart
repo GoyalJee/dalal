@@ -1,12 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:dalal/constants/my_colors.dart';
 import 'package:dalal/views/home/user_home_view.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
-class BSTempController{
+class BSTempController {
   var selectedVal = "Personal Plot".obs;
   var budgetVal = "Less than 10 Lakhs".obs;
   var showLoading = false.obs;
@@ -15,13 +13,11 @@ class BSTempController{
   var phone = GetStorage().read("phone");
   var name = GetStorage().read("name");
 
-  CollectionReference bsRef = FirebaseFirestore.instance.collection('bs');
-
   addDate() async {
     try {
-      await bsRef.add({
+      await FirebaseFirestore.instance.collection('bs').add({
         "name": name,
-        "phoneNumber": phone,
+        "phone": phone,
         "bs": bs,
         "what": selectedVal.value,
         "budget": budgetVal.value,
@@ -32,7 +28,9 @@ class BSTempController{
       Get.defaultDialog(
           title: "Dalal",
           textCancel: "OK",
-          content: const Center(child: Text("Our trusted agents will contact you within 24 hours.")),
+          content: const Center(
+              child:
+                  Text("Our trusted agents will contact you within 24 hours.")),
           barrierDismissible: false);
     } catch (e) {
       Get.snackbar("Error", e.toString(),

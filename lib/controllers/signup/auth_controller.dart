@@ -26,10 +26,13 @@ class AuthController extends GetxController {
       GetStorage().write("name", name.value);
       GetStorage().write("phone", phoneNumber);
       GetStorage().write("type", type);
+      GetStorage().write("isOnBoardingScreenShowed", "true");
       if (type == "user") {
         Get.off(() => UserHomeView());
+        Get.snackbar("Hey 🖐🏽🖐🏽", "SignedIn Successfully !");
       } else {
         Get.off(() => BrokerHomeView());
+        Get.snackbar("Hey 🖐🏽🖐🏽", "SignedIn Successfully !");
       }
     } catch (e) {
       showLoading.value = false;
@@ -40,7 +43,7 @@ class AuthController extends GetxController {
 
   signInWithPhoneNumber() async {
     await FirebaseAuth.instance.verifyPhoneNumber(
-      timeout: const Duration(days: 1000),
+      timeout: const Duration(seconds: 60),
       phoneNumber: "+91$phoneNumber",
       verificationCompleted: (PhoneAuthCredential credential) async {
         await auth.signInWithCredential(credential);
