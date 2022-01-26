@@ -14,8 +14,8 @@ class BrokerHomeView extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(8),
             child: SvgPicture.asset(
-              "lib/models/user_model.dart",
-              height: Get.size.height / 2,
+              "assets/broker_img.svg",
+              height: Get.size.height/2,
             ),
           ),
           Padding(

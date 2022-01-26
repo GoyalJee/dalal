@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dalal/views/home/broker_home_view.dart';
 import 'package:dalal/views/home/user_home_view.dart';
 import 'package:dalal/views/signup/otp_view.dart';
@@ -31,8 +32,12 @@ class AuthController extends GetxController {
         Get.off(() => UserHomeView());
         Get.snackbar("Hey 🖐🏽🖐🏽", "SignedIn Successfully !");
       } else {
-        Get.off(() => BrokerHomeView());
-        Get.snackbar("Hey 🖐🏽🖐🏽", "SignedIn Successfully !");
+        FirebaseFirestore.instance
+            .collection('broker')
+            .add({"name": name.value, "phone": phoneNumber}).whenComplete(() {
+          Get.off(() => const BrokerHomeView());
+          Get.snackbar("Hey 🖐🏽🖐🏽", "SignedIn Successfully !");
+        });
       }
     } catch (e) {
       showLoading.value = false;
@@ -43,6 +48,7 @@ class AuthController extends GetxController {
 
   signInWithPhoneNumber() async {
     await FirebaseAuth.instance.verifyPhoneNumber(
+      autoRetrievedSmsCodeForTesting: "123456",
       timeout: const Duration(seconds: 60),
       phoneNumber: "+91$phoneNumber",
       verificationCompleted: (PhoneAuthCredential credential) async {
