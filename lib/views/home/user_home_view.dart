@@ -58,6 +58,7 @@ class UserHomeView extends StatelessWidget {
             SliverAppBar(
               elevation: 0,
               floating: true,
+              automaticallyImplyLeading: false,
               snap: true,
               pinned: true,
               title: Image.asset(
